@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+<div class="siteinfodiv">
+<div class="infoheader">
+  <h1>CollegeDine: A website for the college canteen</h1>
+</div>
+  <h3>Our college has a lot of students, and correspondingly a lot of rush in the canteen. As a result, many of the students are left waiting to recieve their orders for a major part of the break, leaving them with no time to complete it.</h3>
+<!-- <img src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjKyr2b4q3lAhUYaI8KHZo-CvUQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D%26url%3Dhttps%253A%252F%252Fwww.bbcgoodfood.com%252Fhowto%252Fguide%252Fbalanced-diet-vegan%26psig%3DAOvVaw1SiPq45prcviqvHDHsZYZn%26ust%3D1571761537304462&psig=AOvVaw1SiPq45prcviqvHDHsZYZn&ust=1571761537304462" alt="Image not found"> -->
+  <h3>With our website, you can order your food in advance, thus saving the time to come down to the canteen and placing your order. Two emails are sent to your registered Email ID; one when you place your order, and another when it is prepared and ready to be collected.</h3>
+  
+</div>
+
+
+
+{% else %}
+<!-- <div id="carouselExampleControls" class="carousel slide carouselwithform" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="">
+        hello
+      </div>
+    </div>
+    <div class="carousel-item">
+<h1>ejfojern</h1>
+    </div>
+    <div class="carousel-item">
+<h1>oj oj</h1>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> -->
+
+<div class="divwithform" id="divwithform">
+    <h1 class="paraone">Welcome to CollegeDine!</h1>
+
+<h2 class="pararemaining">It's a website designed to bring convenience for you.</h2>
+
+<h2 class="pararemaining">We will help you to save time, something which is essential for a college student.</h2>
+
+<h2 class="pararemaining">Sign up to find out how.</h2>
+</div>
+
+<div class="signupform" id='signupform'>
+  <div class="container h-75">
+    <h1>Sign Up</h1>
+    <form method="POST" class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      {% endbuttons %}
+    </form>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+<script>
+$("#signupform").height($("#divwithform").height());
+</script>

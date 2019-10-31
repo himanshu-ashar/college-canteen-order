@@ -1,0 +1,96 @@
+{% extends 'products/product_base.html' %}
+{% block preproduct %}
+<div class="container headerdiv">
+    <h3 class="headertext">Pending Orders:</h3>
+</div>
+{% endblock %}
+{% block product_content %}
+
+    <div class="container jumbotron">
+
+    <div class="table-responsive text-nowrap">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col" colspan="2">Items</th>
+            <th scope="col" colspan="2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in pendingorders %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ order.user.username }}</td>
+            <td colspan="2">
+            {% for item in order.items.all %}
+            <h6>{{ item }}</h6>
+            {% endfor %}
+          </td>
+            <td>
+              <a class='btn btn-primary' href="{% url 'products:order-ready' username=order.user.username id=order.id %}">Order Ready</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" href="{% url 'products:order-cancelled' username=order.user.username id=order.id %}">Reject Order</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan='5'>No pending orders</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+
+    <div class="container headerdiv preparedorderdiv">
+        <h3 class="headertext">Prepared Orders:</h3>
+    </div>
+
+    <div class="container jumbotron">
+
+    <div class="table-responsive text-nowrap">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col" colspan="2">Items</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in preparedorders %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ order.user.username }}</td>
+            <td colspan="2">
+            {% for item in order.items.all %}
+            <h6>{{ item }}</h6>
+            {% endfor %}
+          </td>
+            <td>
+              <a class='btn btn-success' href="{% url 'products:order-collected' username=order.user.username id=order.id %}">Order Collected</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan='5'>No pending orders</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+
+{% endblock %}
